@@ -19,5 +19,4 @@ jobs:
         with:
           ssh_host: ${{ secrets.HOST }}
           ssh_private_key: ${{ secrets.SSH_KEY }}
-          ssh_user: ${{ secrets.SSH_USER }}
           docker_compose_prefix: demoapp
