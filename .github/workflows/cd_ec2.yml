@@ -1,0 +1,23 @@
+# This is a basic workflow that is manually triggered
+
+name: CD EC2
+
+on: workflow_dispatch
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  deploy:
+    name: Push to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the files
+        uses: actions/checkout@v3
+
+      - name: Deploy to Server
+        uses: alex-ac/github-action-ssh-docker-compose@master
+        with:
+          ssh_host: ${{ secrets.HOST }}
+          ssh_private_key: ${{ secrets.SSH_KEY }}
+          ssh_user: ${{ secrets.SSH_USER }}
+          docker_compose_prefix: demoapp
