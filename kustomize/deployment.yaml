@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: demoapp
+   namespace: default
+spec:
+   replicas: 1
+   selector:
+      matchLabels:
+         demoapp: web
+   template:
+      metadata:
+         labels:
+            demoapp: web
+      spec:
+          containers:
+            - name: demoapp-site
+              image: darklen/demoapp
+              imagePullPolicy: IfNotPresent
+          ports:
+          - name: http
+            containerPort: 5000
+            protocol: TCP
